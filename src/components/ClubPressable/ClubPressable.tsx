@@ -1,7 +1,8 @@
 import { useTheme } from "@react-navigation/native";
 import React, { FC } from "react";
-import { Text, Pressable, StyleSheet, ButtonProps, PressableProps } from "react-native";
+import { Pressable, StyleSheet, ButtonProps, PressableProps } from "react-native";
 import { clubStyles } from "../../styles/ClubStyles";
+import { ClubText } from "../ClubText/ClubText";
 
 type Props = {
   label: string,
@@ -22,7 +23,7 @@ export const ClubPressable: FC<Props> = ({onPress, label, disabled, children, ..
       onPress={!disabled ? onPress : undefined}
       {...props}
     >
-      { children ? children : <Text style={styles.buttonText}>{label}</Text> }
+      { children ? children : <ClubText style={styles.buttonText}>{label}</ClubText> }
     </Pressable>
   );
 };

@@ -6,6 +6,7 @@ import { ToolSelectionScreen } from "./screens/ToolSelectionScreen/ToolSelection
 import { PasswordGeneratorScreen } from "./screens/PasswordGeneratorScreen/PasswordGeneratorScreen";
 import { ProfileGeneratorScreen } from "./screens/ProfileGeneratorScreen/ProfileGeneratorScreen";
 import Toast from "react-native-toast-message";
+import { useThemeStore } from "./store/themeStore";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,9 +22,33 @@ const LightTheme = {
   },
 };
 
+const DarkTheme = {
+  dark: true,
+  colors: {
+    primary: '#41228e',
+    background: 'rgb(22, 22, 22)',
+    card: 'rgb(255, 255, 255)',
+    text: 'rgb(255, 255, 255)',
+    border: 'rgb(199, 199, 204)',
+    notification: 'rgb(255, 69, 58)',
+  },
+};
+
 export function App() {
+  const {darkTheme} = useThemeStore();
+  const headerOptions = {
+    headerStyle: {
+      backgroundColor: darkTheme ? DarkTheme.colors.background : LightTheme.colors.background,
+    },
+    headerTintColor: darkTheme ? DarkTheme.colors.text : LightTheme.colors.text,
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  }
+
+
   return (
-    <NavigationContainer theme={LightTheme}>
+    <NavigationContainer theme={darkTheme ? DarkTheme : LightTheme}>
       <Stack.Navigator>
         <Stack.Screen
           name="ToolSelection"
@@ -33,12 +58,12 @@ export function App() {
         <Stack.Screen
           name="PasswordGeneratorScreen"
           component={PasswordGeneratorScreen}
-          options={{ title: "Password Generator" }}
+          options={{ title: "Password Generator", ...headerOptions }}
         />
         <Stack.Screen
           name="ProfileGeneratorScreen"
           component={ProfileGeneratorScreen}
-          options={{ title: "Profile Generator" }}
+          options={{ title: "Profile Generator", ...headerOptions }}
         />
       </Stack.Navigator>
       <Toast />

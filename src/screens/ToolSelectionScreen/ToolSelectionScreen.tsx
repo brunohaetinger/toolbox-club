@@ -3,6 +3,7 @@ import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { ClubPressable } from "../../components/ClubPressable/ClubPressable";
 import { Screen } from "../../components/Screen/Screen";
+import { ThemeSwitch } from "../../components/ThemeSwitch/ThemeSwitch";
 import { clubStyles } from "../../styles/ClubStyles";
 
 const Logo = require("../../../assets/logo.png");
@@ -11,7 +12,6 @@ type Props = NativeStackScreenProps<any, any>;
 
 export const ToolSelectionScreen: React.FC<Props> = ({ navigation }) => {
   const navigateTo = (nextScreen: string) => () => {
-    console.log("Nav to ", { nextScreen });
     navigation.navigate(nextScreen);
   };
 
@@ -28,6 +28,7 @@ export const ToolSelectionScreen: React.FC<Props> = ({ navigation }) => {
           onPress={navigateTo("ProfileGeneratorScreen")}
         />
       </View>
+      <ThemeSwitch style={styles.themeSwitch} />
     </Screen>
   );
 };
@@ -47,4 +48,9 @@ const styles = StyleSheet.create({
     marginBottom: 100,
     borderRadius: 10,
   },
+  themeSwitch: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+  }
 });

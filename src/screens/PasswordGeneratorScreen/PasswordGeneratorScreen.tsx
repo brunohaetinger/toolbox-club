@@ -1,14 +1,16 @@
+import Clipboard from "@react-native-clipboard/clipboard";
+import { Theme, useTheme } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useEffect, useState } from "react";
-import { Button, TextInput, View, Text, Switch, StyleSheet } from "react-native";
+import React, { useMemo, useState } from "react";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
+import Toast from "react-native-toast-message";
+import { ClubPressable } from "../../components/ClubPressable/ClubPressable";
+import { ClubText } from "../../components/ClubText/ClubText";
+import { PasswordConfigSwitch } from "../../components/PasswordConfigSwitch/PasswordConfigSwitch";
+import { Screen } from "../../components/Screen/Screen";
+import { clubStyles } from "../../styles/ClubStyles";
 import { PassConfig } from "../../types/PassConfig.type";
 import { generatePassword } from "../../utils/GeneratePassword";
-import Clipboard from "@react-native-clipboard/clipboard";
-import { PasswordConfigSwitch } from "../../components/PasswordConfigSwitch/PasswordConfigSwitch";
-import { Alert } from "react-native";
-import { Screen } from "../../components/Screen/Screen";
-import { ClubPressable } from "../../components/ClubPressable/ClubPressable";
-import Toast from "react-native-toast-message";
 
 type Props = NativeStackScreenProps<any, any>;
 
@@ -21,8 +23,11 @@ const initialPassConfig = {
 };
 
 export const PasswordGeneratorScreen: React.FC<Props> = () => {
+  const { dark, colors } = useTheme();
   const [passConfig, setPassConfig] = useState<PassConfig>(initialPassConfig);
   const [passwordOutput, setPasswordOutput] = useState<string>("");
+
+  const styles = useMemo(() => stylesCb(dark), [dark]);
 
   const copyToClipboard = () => {
     Clipboard.setString(passwordOutput);
@@ -71,15 +76,15 @@ export const PasswordGeneratorScreen: React.FC<Props> = () => {
 
   return (
     <Screen>
-      <Text>Password Generator</Text>
+      <ClubText style={clubStyles.title}>Password Generator</ClubText>
       <View>
         <View style={styles.outputContainer}>
-          <Text 
+          <ClubText 
             style={styles.passwordOutput}
             numberOfLines={1}
           >
             {passwordOutput}
-          </Text>
+          </ClubText>
           <ClubPressable
             onPress={copyToClipboard}
             label="Copy"
@@ -87,11 +92,11 @@ export const PasswordGeneratorScreen: React.FC<Props> = () => {
           />
         </View>
 
-        <View style={styles.inputsContainer}>
+        <View style={[styles.inputsContainer, dark ? clubStyles.shadowWhite : clubStyles.shadow]}>
           <View style={styles.passwordLengthContainer}>
-            <Text>Password Length</Text>
+            <ClubText>Password Length</ClubText>
             <TextInput
-              style={styles.passLengthInput}
+              style={[styles.passLengthInput, {color: colors.text} ]}
               value={String(passConfig.passLength)}
               onChangeText={handlePassLengthChange}
             />
@@ -129,10 +134,10 @@ export const PasswordGeneratorScreen: React.FC<Props> = () => {
 };
 
 
-const styles = StyleSheet.create({
+const stylesCb = (dark: boolean) => StyleSheet.create({
   inputsContainer: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: dark ? "rgb(70, 70, 70)" : "#fff",
     gap: 20,
     padding: 20,
     borderRadius: 5,
@@ -145,7 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: 280,
     alignSelf: 'center',
-    backgroundColor: "#fff",
+    backgroundColor: dark ? "rgb(70, 70, 70)" : "#fff",
   },
   passwordLengthContainer: {
     flexDirection: 'row',

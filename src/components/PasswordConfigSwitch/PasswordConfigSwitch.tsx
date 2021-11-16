@@ -1,6 +1,7 @@
 import { useTheme } from "@react-navigation/native";
 import React, { FC } from "react";
-import { Text, Switch, View, StyleSheet } from "react-native";
+import { Switch, View, StyleSheet } from "react-native";
+import { ClubText } from "../ClubText/ClubText";
 
 type Props = {
   label: string;
@@ -13,7 +14,7 @@ export const PasswordConfigSwitch: FC<Props> = ({ label, value, onToggle }) => {
 
   return (
     <View style={styles.container}>
-      <Text>{label}</Text>
+      <ClubText>{label}</ClubText>
       <Switch
         trackColor={{ false: "#767577", true: `${colors.primary}55` }}
         thumbColor={value ? `${colors.primary}` : "#f4f3f4"}
