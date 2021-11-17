@@ -14,7 +14,7 @@ export const ThemeSwitch: FC<Props> = ({ style }) => {
 
   return (
     <View style={[styles.container, style]}>
-      <ClubText>Dark Theme</ClubText>
+      <ClubText style={{marginRight: 10}}>Dark Theme</ClubText>
       <Switch
         trackColor={{ false: "#767577", true: `${colors.primary}55` }}
         thumbColor={darkTheme ? `${colors.primary}` : "#f4f3f4"}
@@ -31,10 +31,8 @@ export const ThemeSwitch: FC<Props> = ({ style }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: "space-between",
-    gap: 10,
     alignItems: 'center',
   },
 });

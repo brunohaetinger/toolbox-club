@@ -136,9 +136,7 @@ export const PasswordGeneratorScreen: React.FC<Props> = () => {
 
 const stylesCb = (dark: boolean) => StyleSheet.create({
   inputsContainer: {
-    flex: 1,
     backgroundColor: dark ? "rgb(70, 70, 70)" : "#fff",
-    gap: 20,
     padding: 20,
     borderRadius: 5,
     margin: 10,
@@ -156,6 +154,7 @@ const stylesCb = (dark: boolean) => StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     maxHeight: 36,
+    marginBottom: 20,
   },
   passwordOutput: {
     maxHeight: 36,
@@ -163,6 +162,6 @@ const stylesCb = (dark: boolean) => StyleSheet.create({
   },
   passLengthInput: {
     width: 60,
-    textAlign: 'end',
+    textAlign: 'right',
   }
 });

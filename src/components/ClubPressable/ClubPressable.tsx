@@ -8,12 +8,14 @@ type Props = {
   label: string,
 } & PressableProps;
 
-export const ClubPressable: FC<Props> = ({onPress, label, disabled, children, ...props}) => {
+export const ClubPressable: FC<Props> = ({onPress, label, disabled, children, style, ...props}) => {
   const { colors } = useTheme();
 
   return (
     <Pressable
+      {...props}
       style={({ pressed }) => [
+        style,
         styles.button,
         {
           backgroundColor: disabled ? `${colors.primary}22` : (pressed ? `${colors.primary}88` : colors.primary),
@@ -21,7 +23,6 @@ export const ClubPressable: FC<Props> = ({onPress, label, disabled, children, ..
         !disabled ? clubStyles.shadow : null,
       ]}
       onPress={!disabled ? onPress : undefined}
-      {...props}
     >
       { children ? children : <ClubText style={styles.buttonText}>{label}</ClubText> }
     </Pressable>

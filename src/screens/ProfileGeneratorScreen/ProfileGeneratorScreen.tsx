@@ -50,7 +50,7 @@ export const ProfileGeneratorScreen: React.FC<Props> = () => {
         )}
       </View>
 
-      <ClubPressable label="Get New" onPress={queryProfile} disabled={loading}/>
+      <ClubPressable label="Get New" onPress={queryProfile} disabled={loading} style={{marginTop: 10}}/>
     </Screen>
   );
 };

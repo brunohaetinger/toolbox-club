@@ -7,7 +7,7 @@ type Props = {
   label: string;
   value: boolean;
   onToggle: (newValue: boolean) => void;
-};
+}
 
 export const PasswordConfigSwitch: FC<Props> = ({ label, value, onToggle }) => {
   const { colors } = useTheme();
@@ -31,8 +31,9 @@ export const PasswordConfigSwitch: FC<Props> = ({ label, value, onToggle }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: "space-between",
+    alignItems: 'center',
+    marginBottom: 20,
   },
 });

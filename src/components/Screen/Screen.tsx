@@ -19,7 +19,6 @@ const stylesCb = (theme: Theme) => StyleSheet.create({
     backgroundColor: theme.colors.background,
     alignItems: "center",
     justifyContent: "center",
-    gap: 20,
     padding: 20,
   },
 });

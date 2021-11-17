@@ -18,11 +18,12 @@ export const ToolSelectionScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <Screen>
       <Image source={Logo} style={[styles.logo, clubStyles.shadow]} />
-      <View style={{ width: 200, gap: 20 }}>
+      <View style={{ width: 200}}>
         <ClubPressable
           label="Password Generator"
           onPress={navigateTo("PasswordGeneratorScreen")}
-        />
+          style={{marginBottom: 10}}
+          />
         <ClubPressable
           label="Profile Generator"
           onPress={navigateTo("ProfileGeneratorScreen")}
@@ -39,7 +40,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    gap: 20,
     padding: 20,
   },
   logo: {
